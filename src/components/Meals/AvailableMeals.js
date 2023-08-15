@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './AvailableMeals.module.css';
 
 const DUMMY_MEALS = [
     {
@@ -31,7 +32,7 @@ const AvailableMeals = (props) => {
 
     const mealsList = DUMMY_MEALS.map(meal => <li>{meal.name}</li>);
     return (
-        <section>
+        <section className={styles.meals}>
             <ul>
                 {mealsList}
             </ul>
