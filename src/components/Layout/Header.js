@@ -1,18 +1,19 @@
 import { Fragment } from 'react';
 import mealsImage from '../../assets/meals.jpg';
+import styles from './Header.module.css';
 
 const Header = (props) => {
     return(
         <Fragment>
-            <header>
+            <header className={styles.header}>
                 <h1>Meals</h1>
                 <button>Cart</button>
             </header>
-            <div>
-                <img src={mealsImage}></img>
+            <div className={styles['main-image']}>
+                <img src={mealsImage} alt='A table full of delicious food' />
             </div>
         </Fragment>
     )
 };
 
-export deafult Header;
+export default Header;
