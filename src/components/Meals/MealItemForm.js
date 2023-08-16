@@ -11,8 +11,14 @@ const MealItemForm = (props) => {
 
     return (
         <form className={styles.form}>
-            <label htmlFor="current-savings"></label>
-            <Input />
+            <Input label='Amount' input={{
+                id: 'amount',
+                type: 'number',
+                min: '1',
+                max: '5',
+                step: '1',
+                defaultValue: '1'
+            }} />
             <button onClick={onClickHandler}>+ Add</button>
       </form>
     )
