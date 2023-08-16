@@ -1,21 +1,22 @@
 import React from 'react';
 
+import MealItemForm from './MealItemForm';
 import styles from './MealItem.module.css';
 
-const MealItem = props => {
-  // const [deleteText, setDeleteText] = useState('');
-
-  const deleteHandler = () => {
-    // setDeleteText('(Deleted!)');
-    props.onDelete(props.id);
-  };
+const MealItem = (props) => {
+    const price = `$${props.price.toFixed(2)}`;
 
   return (
-    <div className={styles.meal}>
-        <li className={styles.Item} onClick={deleteHandler}>
-            {props.children}
+        <li className={styles.meal}>
+            <div>
+                <h3>{props.name}</h3>
+                <div className={styles.description}>{props.description}</div>
+                <div className={styles.price}>{price}</div>
+            </div>
+           <div>
+                <MealItemForm />
+           </div>
         </li>
-    </div>
   );
 };
 
