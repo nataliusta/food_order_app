@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
 import styles from './MealItemForm.module.css';
 import Input from '../UI/Input';
 
 const MealItemForm = (props) => {
+    const amountInputRef = useRef();
 
-    const onClickHandler = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
     };
 
     return (
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={submitHandler}>
             <Input
+                ref={amountInputRef}
                 label='Amount'
                 input={{
                     id: 'amount_' + props.id,
@@ -22,7 +24,7 @@ const MealItemForm = (props) => {
                     defaultValue: '1',
                 }}
             />
-            <button onClick={onClickHandler}>+ Add</button>
+            <button>+ Add</button>
       </form>
     )
 };
