@@ -9,11 +9,13 @@ const Cart = (props) => {
     const totalAmount = `$${cartCtx.totalAmount.toFixed(2)}`;
     const hasItems = cartCtx.items.length > 0;
 
-    const cartItems = <ul className={styles['cart-items']}>
+    const cartItems = (
+        <ul className={styles['cart-items']}>
             {cartCtx.items.map((item) => (
                 <li>{item.name}</li>
             ))}
             </ul>
+    );
 
     return (
         <Modal onClose={props.onClose}>
