@@ -6,7 +6,7 @@ import styles from './HeaderCartButton.module.css';
 const HeaderCartButton = (props) => {
     const cartCtx = useContext(CartContext);
 
-    const numberOfCartItems = cartCtx.item.reduce((currentNum, item) => {
+    const numberOfCartItems = cartCtx.items.reduce((currentNum, item) => {
         return currentNum + item.amount;
     }, 0);
 
