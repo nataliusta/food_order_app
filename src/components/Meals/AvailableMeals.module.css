@@ -10,6 +10,11 @@
     text-align: center;
   }
 
+  .MealsError {
+    color: red;
+    text-align: center;
+  }
+
   .meals ul {
     list-style: none;
     margin: 0;

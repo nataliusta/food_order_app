@@ -7,34 +7,55 @@ import styles from './AvailableMeals.module.css';
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [httpError, setHttpError] = useState();
 
     useEffect(() => {
       const fetchMeals = async () => {
-          const response = await fetch('https://food-react-e2f74-default-rtdb.europe-west1.firebasedatabase.app/Meals.json')
-        .then();
-        const responseData = await response.json();
+          const response = await fetch(
+            'https://food-react-e2f74-default-rtdb.europe-west1.firebasedatabase.app/Meals.json'
+            );
 
-        const loadedMeals = [];
+            if (!response.ok) {
+              throw new Error('Something went wrong!');
+            }
 
-        for (const key in responseData) {
-          loadedMeals.push({
-            id: key,
-            name: responseData[key].name,
-            description: responseData[key].description,
-            price: responseData[key].price,
-          });
-        }
-        setMeals(loadedMeals);
-        setIsLoading(false);
+          const responseData = await response.json();
+
+          const loadedMeals = [];
+
+          for (const key in responseData) {
+            loadedMeals.push({
+              id: key,
+              name: responseData[key].name,
+              description: responseData[key].description,
+              price: responseData[key].price,
+            });
+          }
+
+          setMeals(loadedMeals);
+          setIsLoading(false);
       };
 
-      fetchMeals();
+      try {
+        fetchMeals();
+      } catch (error) {
+        setIsLoading(false);
+        setHttpError(error);
+      }
     }, []);
 
     if (isLoading) {
       return (
         <section className={styles.MealsLoading}>
           <p>Loading...</p>
+        </section>
+      );
+    }
+
+    if (httpError) {
+      return (
+        <section className={styles.MealsError}>
+          <p>{httpError}</p>
         </section>
       );
     }
