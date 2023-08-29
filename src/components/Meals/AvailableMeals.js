@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Card from '../UI/Card';
 import MealItem from './MealItem';
 import styles from './AvailableMeals.module.css';
 
 const AvailableMeals = () => {
+  const [meals, setMeals] = useState([]);
+
     useEffect(() => {
       const fetchMeals = async () => {
-          const response = await fetch('https://console.firebase.google.com/project/food-react-e2f74/database/food-react-e2f74-default-rtdb/data/~2F/Meals.json')
+          const response = await fetch('https://food-react-e2f74-default-rtdb.europe-west1.firebasedatabase.app/Meals.json')
         .then();
         const responseData = await response.json();
 
@@ -20,14 +22,14 @@ const AvailableMeals = () => {
             description: responseData[key].description,
             price: responseData[key].price,
           });
-          
         }
+        setMeals(loadedMeals);
       };
 
       fetchMeals();
     }, []);
 
-    const mealsList = DUMMY_MEALS.map((meal) => (
+    const mealsList = meals.map((meal) => (
       <MealItem
           key={meal.id}
           id={meal.id}
