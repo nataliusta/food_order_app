@@ -31,7 +31,7 @@ const Checkout = (props) => {
     const enteredPostalCodeIsValid = !isFiveChars(enteredPostalCode);
     const enteredCityIsValid = !isEmpty(enteredCity);
 
-    formInputsValidity({
+    setFormInputsValidity({
         name: enteredNameIsValid,
         street: enteredStreetIsValid,
         city: enteredCityIsValid,
@@ -52,7 +52,7 @@ const Checkout = (props) => {
   };
 
     const nameControlClasses = `${classes.control} ${
-    formInputsValidity.name ? '' : classes.invalid
+        formInputsValidity.name ? '' : classes.invalid
     }`;
 
     const streetControlClasses = `${classes.control} ${
