@@ -38,6 +38,7 @@ const Cart = (props) => {
     });
     setIsSubmitting(false);
     didSubmit(true);
+    cartCtx.clearCart();
   };
 
   const cartItems = (
