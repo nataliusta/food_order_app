@@ -29,7 +29,7 @@ const Cart = (props) => {
 
   const submitOrderHandler = async (userData) => {
     setIsSubmitting(true);
-    await fetch('https://food-react-e2f74-default-rtdb.europe-west1.firebasedatabase.app/orders.json', {
+    await fetch('https://food-react-e2f74-default-rtdb.app/Meals/orders.json', {
       method: 'POST',
       body: JSON.stringify({
         user: userData,
@@ -37,7 +37,7 @@ const Cart = (props) => {
       })
     });
     setIsSubmitting(false);
-    didSubmit(true);
+    setDidSubmit(true);
     cartCtx.clearCart();
   };
 
